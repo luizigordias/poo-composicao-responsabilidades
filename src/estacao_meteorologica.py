@@ -10,7 +10,11 @@ class EstacaoMeteorologica:
     def registrar_temperatura(self, temperatura: float) -> bool:
         _ = temperatura
         # TODO checkpoint 02: atualizar sensor e avaliar alarme somente se aceito.
-        return False
+        if self._sensor.atualizar(temperatura):
+            self._alarme.avaliar(temperatura)
+            return True
+        else:
+            return False
 
     @property
     def temperatura(self) -> float:

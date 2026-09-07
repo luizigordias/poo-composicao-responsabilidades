@@ -6,14 +6,26 @@ Complete as relações, multiplicidades, atributos e operações que faltam. O d
 classDiagram
     class SensorTemperatura {
         -valor_: double
-        +atualizar(valor) bool
+        +atualizar(valor: double) bool
         +valor() double
     }
+    
     class AlarmeTermico {
-        %% TODO: estado e operações públicas
+        -ligado_: bool
+        +avaliar(temperatura: double) void
+        +estaLigado() bool
     }
+    
     class EstacaoMeteorologica {
-        %% TODO: partes e operações públicas
+        -sensor_: SensorTemperatura
+        -alarme_: AlarmeTermico
+        +EstacaoMeteorologica(tag: string, temperaturaInicial: double)
+        +registrarTemperatura(temperatura: double) bool
+        +temperatura() double
+        +alarmeLigado() bool
     }
-    %% TODO: composição e multiplicidades
+    
+    %% Composição e multiplicidades
+    EstacaoMeteorologica *-- "1" SensorTemperatura : contém
+    EstacaoMeteorologica *-- "1" AlarmeTermico : contém
 ```
