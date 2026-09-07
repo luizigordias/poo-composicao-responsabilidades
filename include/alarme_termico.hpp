@@ -7,7 +7,7 @@ public:
     bool estaLigado() const;
 
 private:
-    bool ligado_{false};
+    bool ligado_ = false;
 };
 
 #endif
